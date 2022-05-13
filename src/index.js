@@ -124,7 +124,7 @@ function buttomForNeighbours() {
     Notify.info(`Neighbours for ${country.name.official}`);
     promiseCreator('neighbours', stringToSearch);
     refs.input.value = '';
-  });
+  }, {once: true});
 }
 
 refs.list.addEventListener('mouseover', showFocus);

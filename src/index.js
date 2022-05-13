@@ -25,7 +25,9 @@ function throtleSendData() {
 //1)default: search countries by part of name
 //2)additional: search all nearby neighbours
 function promiseCreator(type, allNeighbours) {
-  const { value: partName } = refs.input;
+  const { value } = refs.input;
+  const partName = value.trim();
+
   const thePromise =
     type === 'neighbours' ? fetchNeighbours(allNeighbours) : fetchCountries(partName);
 
@@ -55,8 +57,8 @@ function showList(countrysArray) {
     const country = countrysArray[0];
     li = createOne(country);
   }
-    refs.list.innerHTML = li;
-    
+  refs.list.innerHTML = li;
+
   //add eventlisnter for buttom(if necessary)
   buttomForNeighbours();
 }

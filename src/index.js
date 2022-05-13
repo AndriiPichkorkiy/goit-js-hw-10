@@ -83,7 +83,6 @@ function createPlural(countrysArray) {
 //render info about one country
 function createOne(country, index = 0) {
   const stringLanguages = Object.values(country.languages).join(', ');
-
   return `
         
         <div class="short_info" data-countryindex="${index}">
@@ -118,13 +117,23 @@ function buttomForNeighbours() {
 
   const { countryindex } = el.dataset;
   const country = currentData.array[countryindex];
+
+  //check countries like Madagascar
+  if (!country.borders) {
+    el.parentElement.lastElementChild.remove();
+    return;
+  }
   const stringToSearch = country.borders.join(',');
 
-  el.parentElement.lastElementChild.addEventListener('click', () => {
-    Notify.info(`Neighbours for ${country.name.official}`);
-    promiseCreator('neighbours', stringToSearch);
-    refs.input.value = '';
-  }, {once: true});
+  el.parentElement.lastElementChild.addEventListener(
+    'click',
+    () => {
+      Notify.info(`Neighbours for ${country.name.official}`);
+      promiseCreator('neighbours', stringToSearch);
+      refs.input.value = '';
+    },
+    { once: true },
+  );
 }
 
 refs.list.addEventListener('mouseover', showFocus);

@@ -34,7 +34,7 @@ ul {
 }
 
 .list:hover {
-  height: 64px;
+  min-height: 64px;
   /* display: inline; */
   border-radius: 8px;
   padding-left: 16px;

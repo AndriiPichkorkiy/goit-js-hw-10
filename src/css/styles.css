@@ -14,6 +14,7 @@ body {
   margin-left: 32px;
   height: 100vh;
   background: linear-gradient(to bottom, #00b09b, #96c93d);
+  background-attachment: fixed;
 }
 
 ul {
@@ -89,6 +90,34 @@ h3 {
   position: fixed;
   top: 32px;
   left: 320px;
+}
+
+
+
+@media screen and (max-width: 580px) {
+  body {
+    padding-right: 20px;
+
+  }
+  .country-info {
+    position: static;
+    max-width: 320px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+        margin-bottom: 10px;
+  }
+  .country-info:before {
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+    margin: -20px;
+  }
 }
 
 /* CSS */

@@ -103,10 +103,6 @@ function createOne(country, index = 0) {
                 <span class="title">Languages: </span>
                 <span>${stringLanguages}</span>
             </div>
-            <div>
-                <Button class="button-53">Find Neighbours: Click Me</Button>
-            </div>
-        
     `;
 }
 
@@ -118,14 +114,16 @@ function buttomForNeighbours() {
   const { countryindex } = el.dataset;
   const country = currentData.array[countryindex];
 
-  //check countries like Madagascar
+  //check countries like Madagascar, Republic of the Maldives
   if (!country.borders) {
-    el.parentElement.lastElementChild.remove();
     return;
   }
   const stringToSearch = country.borders.join(',');
 
-  el.parentElement.lastElementChild.addEventListener(
+  const buttom = document.createElement('button');
+  buttom.innerHTML = 'Find Neighbours: Click Me';
+  buttom.classList.add('button-53');
+  buttom.addEventListener(
     'click',
     () => {
       Notify.info(`Neighbours for ${country.name.official}`);
@@ -134,6 +132,7 @@ function buttomForNeighbours() {
     },
     { once: true },
   );
+  el.parentElement.append(buttom);
 }
 
 refs.list.addEventListener('mouseover', showFocus);

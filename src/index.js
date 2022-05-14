@@ -34,13 +34,17 @@ function promiseCreator(type, allNeighbours) {
   thePromise
     .then(response => showList(response))
     .catch(error => {
+      clearList();
       if (error.message === '404') {
         Notify.failure('Oops, there is no country with that name ');
       } else {
-        console.log(error);
         Notify.failure(error + ', ' + error.message);
       }
     });
+}
+
+function clearList() {
+  refs.list.innerHTML = '';
 }
 
 //render catched data
@@ -48,7 +52,7 @@ function showList(countrysArray) {
   stopShowFocus();
 
   currentData.array = countrysArray;
-  let li = '';
+  let li;
   if (countrysArray.length > 10) {
     Notify.info('Too many matches found. Please enter a more specific name.');
   } else if (countrysArray.length > 1) {
@@ -144,8 +148,8 @@ function showFocus() {
     const index = event.target.dataset.countryindex;
     const country = currentData.array[index];
 
-    const string = createOne(country, index);
-    refs.info.innerHTML = '<ul class="country-list">' + string + '</ul>';
+    const el = createOne(country, index);
+    refs.info.innerHTML = el;
     buttomForNeighbours();
   }
 }
